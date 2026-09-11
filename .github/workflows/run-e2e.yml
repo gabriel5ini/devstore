@@ -1,0 +1,33 @@
+name: Cypress Tests
+
+on: push
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10
+          cache: true
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v7
+        env:
+          NEXT_PUBLIC_API_BASE_URL: ${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+          APP_URL: ${{ secrets.APP_URL }}
+        with:
+          build: npm run build
+          start: npm start
