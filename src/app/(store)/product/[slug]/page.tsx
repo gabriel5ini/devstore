@@ -19,16 +19,16 @@ interface ProductPageProps {
   }>;
 }
 
-export async function generateStaticParams() {
-  const response = await api("/products", {
-    next: { revalidate: 60 * 60 }, // 1 hour
-  });
-  const products: Product[] = await response.json();
+// export async function generateStaticParams() {
+//   const response = await api("/products", {
+//     next: { revalidate: 60 * 60 }, // 1 hour
+//   });
+//   const products: Product[] = await response.json();
 
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
-}
+//   return products.map((product) => ({
+//     slug: product.slug,
+//   }));
+// }
 
 export async function generateMetadata({ params }: ProductPageProps) {
   const { slug } = await params;
