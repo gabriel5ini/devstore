@@ -4,6 +4,9 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+// Used because we dont have the api separated from the web app
+export const dynamic = "force-dynamic";
+
 async function getFeaturedProducts(): Promise<Product[]> {
   const response = await api("/products/featured", {
     next: { revalidate: 60 }, // 1 minute

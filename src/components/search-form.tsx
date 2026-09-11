@@ -1,3 +1,5 @@
+"use client";
+
 import { SearchIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent } from "react";
